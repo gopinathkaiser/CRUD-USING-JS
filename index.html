@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    
+    <title>CRUD OPERATION</title>
+</head>
+
+<body>
+    <section class="full-body">
+        <section class="header">
+            <h1>CRUD OPERATION IN JS</h1>
+        </section>
+        <section class="buttons">
+            <button type="button" id="addEmployee" onclick="visibleForm()">Add Employee</button>
+            <!-- <button type="button" id=""></button> -->
+            <div>
+                <form action="">
+                    <div class="form-data form-content" id="form-data">
+                        <label for="name">NAME</label>
+                        <input type="text" name="name" id="name" required>
+                        <label for="designation">DESIGNATION</label>
+                        <input type="text" name="designation" id="designation" required>
+                        <label for="salary">SALARY</label>
+                        <input type="text" name="salary" id="salary" required>
+                        <label for="city">CITY</label>
+                        <input type="text" name="city" id="city" required>
+                        <input type="button" value="submit" onclick="getDetails()">
+                        <input type="button" value="clear">
+                    </div>
+
+                    <div class="form-data-update form-content" id="form-data-update">
+                        <label for="name">NAME</label>
+                        <input type="text" name="name" id="name-1" required>
+                        <label for="designation">DESIGNATION</label>
+                        <input type="text" name="designation" id="designation-1" required>
+                        <label for="salary">SALARY</label>
+                        <input type="text" name="salary" id="salary-1" required>
+                        <label for="city">CITY</label>
+                        <input type="text" name="city" id="city-1" required>
+                        <input type="button" value="submit" onclick="update()">
+                        <input type="button" value="clear">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="content">
+            <p id="hello"></p>
+            <table class="table-main" id="table-main">
+                <tr id="tabel-row">
+                    <th>S.NO </th>
+                    <th>NAME </th>
+                    <th>DESIGNATION</th>
+                    <th>SALARY</th>
+                    <th>CITY</th>
+                    <th>ACTIONS</th>
+                </tr>
+                <div class="table-main-div">
+                    
+                </div>
+            </table>
+        </section>
+    </section>
+    <script src="./script.js"></script>
+</body>
+
+</html>
