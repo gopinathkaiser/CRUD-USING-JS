@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    
+
     <title>CRUD OPERATION</title>
 </head>
 
-<body>
+<body onload="loading()">
     <section class="full-body">
         <section class="header">
             <h1>CRUD OPERATION IN JS</h1>
@@ -20,29 +20,123 @@
             <div>
                 <form action="">
                     <div class="form-data form-content" id="form-data">
-                        <label for="name">NAME</label>
-                        <input type="text" name="name" id="name" required>
-                        <label for="designation">DESIGNATION</label>
-                        <input type="text" name="designation" id="designation" required>
-                        <label for="salary">SALARY</label>
-                        <input type="text" name="salary" id="salary" required>
-                        <label for="city">CITY</label>
-                        <input type="text" name="city" id="city" required>
-                        <input type="button" value="submit" onclick="getDetails()">
-                        <input type="button" value="clear">
+                        <table class="form-table">
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeid">Employee Id </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="employeeid" id="employeeid" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="name">NAME</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="name" id="name" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="designation">DESIGNATION</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="designation" id="designation" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="salary">SALARY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="salary" id="salary" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="city">CITY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="city" id="city" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+
+                                </td>
+                                <td>
+                                    <input type="submit" value="submit" onclick="getDetails()" class="submit-button">
+                                    <input type="reset" value="clear" class="clear-button">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
 
                     <div class="form-data-update form-content" id="form-data-update">
-                        <label for="name">NAME</label>
-                        <input type="text" name="name" id="name-1" required>
-                        <label for="designation">DESIGNATION</label>
-                        <input type="text" name="designation" id="designation-1" required>
-                        <label for="salary">SALARY</label>
-                        <input type="text" name="salary" id="salary-1" required>
-                        <label for="city">CITY</label>
-                        <input type="text" name="city" id="city-1" required>
-                        <input type="button" value="submit" onclick="update()">
-                        <input type="button" value="clear">
+                        <table class="form-table">
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeIdUpdate">Employee Id </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="employeeIdUpdate" id="employeeIdUpdate" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeNameUpdate">NAME</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeNameUpdate" id="employeeNameUpdate" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeDesignationUpdate">DESIGNATION</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeDesignationUpdate" id="employeeDesignationUpdate" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeSalaryUpdate">SALARY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeSalaryUpdate" id="employeeSalaryUpdate" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeCityUpdate">CITY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeCityUpdate" id="employeeCityUpdate" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+
+                                </td>
+                                <td>
+                                    <input type="button" value="submit" onclick="update()" class="submit-button">
+                                    <input type="button" value="clear" class="clear-button">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </form>
             </div>
@@ -59,7 +153,7 @@
                     <th>ACTIONS</th>
                 </tr>
                 <div class="table-main-div">
-                    
+
                 </div>
             </table>
         </section>
