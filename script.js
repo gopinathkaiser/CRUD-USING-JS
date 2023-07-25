@@ -8,30 +8,30 @@ let employeeDetails = new Array();
 
 
 function getDetails() {
-   if(eid.value == "" || ename.value == "" || edesignation.value == "" || esal.value == "" || ecity.value == ""){
+    if (eid.value == "" || ename.value == "" || edesignation.value == "" || esal.value == "" || ecity.value == "") {
         alert("Fill all the fields");
-   }else{
-    addEmployee();
+    } else {
+        addEmployee();
 
-   }
+    }
 
 }
 
 
-function onRefresh(){
-     
+function onRefresh() {
+
     let tempArray = new Array();
-    
-    for (let employee in localStorage){
-        
+
+    for (let employee in localStorage) {
+
         let jsonString = JSON.parse(JSON.stringify(localStorage.getItem(employee)));
-        if(jsonString==null){
+        if (jsonString == null) {
             break;
         }
         tempArray = jsonString.split(",");
         employeeDetails.push(tempArray);
 
-        
+
     }
     displayEmployees();
 
@@ -45,10 +45,10 @@ function addEmployee() {
     tempArray.push(edesignation.value);
     tempArray.push(esal.value);
     tempArray.push(ecity.value);
-    
+
     let key = eid.value;
-    localStorage.setItem(key,tempArray);
-    
+    localStorage.setItem(key, tempArray);
+
     employeeDetails.push(tempArray);
     displayEmployees();
     document.getElementById("employeeid").value = "";
@@ -62,16 +62,16 @@ function addEmployee() {
 
 function displayEmployees() {
 
-    
+
     document.getElementById("table-main").innerHTML = "<tr><th> Employee ID </th> <th> NAME </th> <th>DESIGNATION</th> <th>SALARY</th> <th>CITY</th> <th>ACTIONS</th> </tr>";
     employeeDetails.forEach(employee => {
         let tempArray = [];
         tempArray = employee;
-        
+
 
 
         document.getElementById("table-main").innerHTML += `<tr><td>  ${tempArray[0]} </td><td> ${tempArray[1]} </td> <td> ${tempArray[2]} </td><td> ${tempArray[3]} </td> <td> ${tempArray[4]} </td><td> <a href = "#" onclick = "editEmployeeList(${tempArray[0]})">Edit</a>  <a href = "#" onclick="deleteEmployeeList(${tempArray[0]})">Delete </a></td></tr>`;
-        
+
     });
 
 
@@ -92,11 +92,11 @@ function editEmployeeList(val) {
     document.getElementById('form-data').style.display = "none";
 
     let tempArray = new Array();
-    
+
     let index;
-    for(let i=0;i<employeeDetails.length;i++){
+    for (let i = 0; i < employeeDetails.length; i++) {
         tempArray = employeeDetails[i];
-        if(tempArray[0] == val){
+        if (tempArray[0] == val) {
             index = i;
             break;
         }
@@ -127,39 +127,39 @@ function updateEmployeeDetails() {
 
     let tempArray = new Array();
     let index;
-    for(let i=0;i<employeeDetails.length;i++){
+    for (let i = 0; i < employeeDetails.length; i++) {
         tempArray = employeeDetails[i];
-        if(tempArray[0] == eidUpdate.value){
+        if (tempArray[0] == eidUpdate.value) {
             index = i;
             break;
         }
     }
 
     employeeDetails[index] = changedValuesArray;
-   localStorage.setItem(eidUpdate.value,changedValuesArray);
-   displayEmployees();
+    localStorage.setItem(eidUpdate.value, changedValuesArray);
+    displayEmployees();
     document.getElementById('form-data-update').style.display = "none";
 }
 
 function deleteEmployeeList(val) {
     console.log(employeeDetails);
-    if(!confirm("Are u sure")){
-        return ;
+    if (!confirm("Are u sure")) {
+        return;
     }
-     
+
     let tempArray = new Array();
-    
+
     let index;
-    for(let i=0;i<employeeDetails.length;i++){
+    for (let i = 0; i < employeeDetails.length; i++) {
         tempArray = employeeDetails[i];
-        if(tempArray[0] == val){
+        if (tempArray[0] == val) {
             index = i;
             break;
         }
     }
     employeeDetails.splice(index, 1);
-     localStorage.removeItem(val);
-     displayEmployees();
+    localStorage.removeItem(val);
+    displayEmployees();
 }
 
 
