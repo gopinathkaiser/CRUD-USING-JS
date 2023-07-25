@@ -9,7 +9,7 @@
     <title>CRUD OPERATION</title>
 </head>
 
-<body onload="loading()">
+<body onload="onRefresh()">
     <section class="full-body">
         <section class="header">
             <h1>CRUD OPERATION IN JS</h1>
@@ -23,10 +23,10 @@
                         <table class="form-table">
                             <tr class="form-row">
                                 <td>
-                                    <label for="employeeid">Employee Id </label>
+                                    <label for="id">Employee Id </label>
                                 </td>
                                 <td>
-                                    <input type="number" name="employeeid" id="employeeid" required>
+                                    <input type="number" name="id" id="id" required>
                                 </td>
                             </tr>
                             <tr class="form-row">
@@ -132,7 +132,7 @@
 
                                 </td>
                                 <td>
-                                    <input type="button" value="submit" onclick="update()" class="submit-button">
+                                    <input type="button" value="submit" onclick="updateEmployeeDetails()" class="submit-button">
                                     <input type="button" value="clear" class="clear-button">
                                 </td>
                             </tr>
