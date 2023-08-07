@@ -139,7 +139,7 @@ function updateEmployeeDetails() {
 
 function deleteEmployeeList(val) {
 
-     console.log(employeeDetails);
+    console.log(employeeDetails);
     if (!confirm("Are u sure")) {
         return;
     }
@@ -159,34 +159,116 @@ function deleteEmployeeList(val) {
     displayEmployees();
 }
 
-function authenticate1(){
+function authenticate1() {
     const formData = {
-        id : document.querySelector('[name="id"]').value,
+        id: document.querySelector('[name="id"]').value,
         name: document.querySelector('[name="name"]').value,
-        designation : document.querySelector('[name="designation"]').value,
-        salary : document.querySelector('[name = "salary"]').value,
-        city : document.querySelector('[name = "city"]').value
+        designation: document.querySelector('[name="designation"]').value,
+        salary: document.querySelector('[name = "salary"]').value,
+        city: document.querySelector('[name = "city"]').value
     };
 
     fetch('/insert', {
-        method : 'POST',
-        headers : {
-                'Content-Type' : 'application/json',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        body : JSON.stringify(formData),
+        body: JSON.stringify(formData),
     })
 
-    .then(response => response.json())
-    .then(data => {
-        alert("success");
-        console.log("success", data.message);
-    })
+        .then(response => response.json())
+        .then(data => {
+            alert("success");
+            // console.log("success", data.message);
+        })
 
-    .catch(error => {
-        console.log(error , data.message);
-    });
+        .catch(error => {
+            console.log(error, error.message);
+        });
+
+
+    displayData();
 }
-  
+
+function displayData() {
+    fetch('/getData')
+        .then(response => response.json())
+        .then(data => {
+            console.log("dataas");
+            // const tmain = document.getElementById('tmain');
+            // tmain.innerHTML = '';
+            // const thead = "<tr><th> Employee ID </th> <th> NAME </th> <th>DESIGNATION</th> <th>SALARY</th> <th>CITY</th> <th>ACTIONS</th> </tr>"; 
+            //    tmain.appendChild();
+            // tmain.appendChild(thead);
+
+            document.getElementById("table-main").innerHTML = "<tr><th> Employee ID </th> <th> NAME </th> <th>DESIGNATION</th> <th>SALARY</th> <th>CITY</th> <th>ACTIONS</th> </tr>";
+
+            data.forEach(item => {
+                document.getElementById("table-main").innerHTML += `<tr><td>${item.employeeid}</td><td>${item.ename}</td><td>${item.edesignation}</td><td>${item.esalary}</td><td>${item.ecity}</td><td> <a href = "#" onclick = "editEmployeeListDB(${item.employeeid})">Edit</a>  <a href = "#" onclick="deleteEmployeeList(${item.employeeid})">Delete </a></td></tr>`;
+                // tmain.appendChild(val);
+                //console.log(item);
+            });
+            // console.log("json", data);
+
+        })
+        .catch(err => {
+            console.log("error in fetching", err);
+        });
+}
+
+function editEmployeeListDB(val) {
+    document.getElementById('form-data-update').style.display = "block";
+    document.getElementById('form-data').style.display = "none";
+
+
+    fetch(`/getParticularData/${val}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("data for updation");
+            console.log(data);
+            document.getElementById("employeeIdUpdate").value = data.employeeid;
+            document.getElementById("employeeNameUpdate").value = data.ename;
+            document.getElementById("employeeDesignationUpdate").value = data.edesignation;
+            document.getElementById("employeeSalaryUpdate").value = data.esalary;
+            document.getElementById("employeeCityUpdate").value = data.ecity;
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+function updateEmployeeDb() {
+
+
+    const updateFormData = {
+        eidUpdate: document.getElementById("employeeIdUpdate").value,
+        enameUpdate: document.getElementById("employeeNameUpdate").value,
+        edesignationUpdate: document.getElementById("employeeDesignationUpdate").value,
+        esalUpdate: document.getElementById("employeeSalaryUpdate").value,
+        ecityUpdate: document.getElementById("employeeCityUpdate").value
+    };
+
+    fetch('/updateData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateFormData),
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            alert("success updated");
+            // console.log("success", data.message);
+        })
+
+        .catch(error => {
+            console.log(error, error.message);
+        });
+    displayData();
+
+}
 
 
 
