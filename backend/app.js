@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(bodyParser.json());
-app.use (bodyParser.urlencoded({extended:false}));
+app.use (bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname,'../frontend')));
 //app.use(helmet());
 
@@ -38,10 +38,10 @@ app.post('/insert',function(req,res){
     pool.query("INSERT INTO employeedetails(employeeid,ename,edesignation,esalary,ecity) values ($1, $2, $3, $4, $5)",[data.id, data.name,data.designation, data.salary, data.city] ,(err,result) => {
         if(err){
             console.log("error" + err);
-        //    res.send(500);
+            res.status(500).json({message : "error"});
         }else{
             console.log("data inserted");
-        //    res.send(200);
+            res.status(200).json({message :"success"});
         }
     });
 

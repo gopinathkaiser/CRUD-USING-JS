@@ -179,11 +179,11 @@ function authenticate1(){
     .then(response => response.json())
     .then(data => {
         alert("success");
-        console.log("success", data);
+        console.log("success", data.message);
     })
 
     .catch(error => {
-        console.log(error);
+        console.log(error , data.message);
     });
 }
   
