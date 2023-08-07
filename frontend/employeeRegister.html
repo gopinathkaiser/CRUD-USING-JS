@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="./style.css">
+
+    <title>CRUD OPERATION</title>
+</head>
+
+<body onload="onRefresh()">
+    <section class="full-body">
+        <section class="header">
+            <h1>CRUD OPERATION IN JS</h1>
+        </section>
+        <section class="buttons">
+            <button type="button" id="addEmployee" onclick="visibleForm()">Add Employee</button>
+            <!-- <button type="button" id=""></button> -->
+            <div>
+                <form action="">
+                    <div class="form-data form-content" id="form-data">
+                        <table class="form-table">
+                            <tr class="form-row">
+                                <td>
+                                    <label for="id">Employee Id </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="id" id="id" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="name">NAME</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="name" id="name" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="designation">DESIGNATION</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="designation" id="designation" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="salary">SALARY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="salary" id="salary" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="city">CITY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="city" id="city" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+
+                                </td>
+                                <td>
+                                    <input type="submit" value="submit" class="submit-button" onclick="authenticate1()">
+                                    <!-- <input type="submit" value="submit" onclick="getDetails()" class="submit-button"> -->
+
+                                    <input type="reset" value="clear" class="clear-button">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+
+                <form action="/update" method="post" id="form">
+                    <div class="form-data-update form-content" id="form-data-update">
+                        <table class="form-table">
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeIdUpdate">Employee Id </label>
+                                </td>
+                                <td>
+                                    <input type="number" name="employeeIdUpdate" id="employeeIdUpdate" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeNameUpdate">NAME</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeNameUpdate" id="employeeNameUpdate" required>
+                                </td>
+                            </tr>
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeDesignationUpdate">DESIGNATION</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeDesignationUpdate" id="employeeDesignationUpdate"
+                                        required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeSalaryUpdate">SALARY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeSalaryUpdate" id="employeeSalaryUpdate" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+                                    <label for="employeeCityUpdate">CITY</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="employeeCityUpdate" id="employeeCityUpdate" required>
+
+                                </td>
+                            </tr>
+
+                            <tr class="form-row">
+                                <td>
+
+                                </td>
+                                <td>
+                                    <!-- <input type="submit" value="submit" onclick="updateEmployeeDetails()"
+                                        class="submit-button"> -->
+                                    <input type="submit" value="submit" class="submit-button">
+
+                                    <input type="reset" value="clear" class="clear-button">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="content">
+            <p id="hello"></p>
+            <table class="table-main" id="table-main">
+                <tr id="tabel-row">
+                    <th>S.NO </th>
+                    <th>NAME </th>
+                    <th>DESIGNATION</th>
+                    <th>SALARY</th>
+                    <th>CITY</th>
+                    <th>ACTIONS</th>
+                </tr>
+                <div class="table-main-div">
+
+                </div>
+            </table>
+        </section>
+    </section>
+
+   
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
