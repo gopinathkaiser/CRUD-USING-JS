@@ -1,4 +1,4 @@
-
+/*      LOCAL STORAGE CODE
 
 let eid = document.getElementById("id");
 let ename = document.getElementById("name");
@@ -159,7 +159,10 @@ function deleteEmployeeList(val) {
     displayEmployees();
 }
 
-async function authenticate1() {
+*/
+
+
+async function insertApiCall() {
     const formData = {
         id: document.querySelector('[name="id"]').value,
         name: document.querySelector('[name="name"]').value,
@@ -179,7 +182,6 @@ async function authenticate1() {
         .then(response => response.json())
         .then(data => {
             alert("success");
-            // console.log("success", data.message);
         })
 
         .catch(error => {
@@ -195,20 +197,15 @@ async function displayData() {
         .then(response => response.json())
         .then(data => {
             console.log("dataas");
-            // const tmain = document.getElementById('tmain');
-            // tmain.innerHTML = '';
-            // const thead = "<tr><th> Employee ID </th> <th> NAME </th> <th>DESIGNATION</th> <th>SALARY</th> <th>CITY</th> <th>ACTIONS</th> </tr>"; 
-            //    tmain.appendChild();
-            // tmain.appendChild(thead);
+
 
             document.getElementById("table-main").innerHTML = "<tr><th> Employee ID </th> <th> NAME </th> <th>DESIGNATION</th> <th>SALARY</th> <th>CITY</th> <th>ACTIONS</th> </tr>";
 
             data.forEach(item => {
                 document.getElementById("table-main").innerHTML += `<tr><td>${item.employeeid}</td><td>${item.ename}</td><td>${item.edesignation}</td><td>${item.esalary}</td><td>${item.ecity}</td><td> <a href = "#" onclick = "editEmployeeListDB(${item.employeeid})">Edit</a>  <a href = "#" onclick="deleteEmployeeListDB(${item.employeeid})">Delete </a></td></tr>`;
-                // tmain.appendChild(val);
-                //console.log(item);
+
             });
-            // console.log("json", data);
+
 
         })
         .catch(err => {
@@ -260,13 +257,12 @@ function updateEmployeeDb() {
         .then(response => response.json())
         .then(data => {
             alert("success updated");
-            // console.log("success", data.message);
         })
 
         .catch(error => {
             console.log(error, error.message);
         });
-    displayData();
+        displayData();
 
 }
 
@@ -280,7 +276,7 @@ async function deleteEmployeeListDB(id) {
             console.log(error + "in delete");
         });
 
-    displayData();
+        displayData();
 }
 
 

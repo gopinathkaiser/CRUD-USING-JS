@@ -4,7 +4,6 @@ const http = require('http');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { error, log } = require('console');
-//const helmet = require('helmet');
 
 
 
@@ -14,7 +13,6 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use (bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'../frontend')));
-//app.use(helmet());
 
 
 app.get('/',function(req,res){
@@ -39,7 +37,6 @@ app.post('/insert',function(req,res){
 });
 
 app.get('/getData',(req,res) => {
-    // const d = pool.query("select * from employeedetails");
     pool.query("select * from employeedetails ORDER BY employeeid ASC", (err,result) => {
         if(err){
             console.log("error in db" + err);
@@ -47,7 +44,6 @@ app.get('/getData',(req,res) => {
         }else{
             console.log("data fetched");
             console.log("rows results " ,result);
-            // console.log(d);
 
             res.json(result.rows);
         }
@@ -55,7 +51,6 @@ app.get('/getData',(req,res) => {
 })
 
 app.get('/getParticularData/:id',(req,res)=>{
-    // const data = req.body;
      console.log(req.params.id);
     pool.query("select * from employeedetails where employeeid = $1",[req.params.id], (err,result) => {
         if(err){
@@ -64,9 +59,7 @@ app.get('/getParticularData/:id',(req,res)=>{
         }else{
             console.log("data fetched fro updation");
             console.log("result us " ,result);
-            // res.status(200).json({message :"success in fetch for update"});
             res.json(result.rows[0]);
-            // res.redirect('/');
         }
     });
 })
@@ -98,7 +91,6 @@ app.get('/remove/:id', (req,res)=>{
             console.log("data deleted");
             console.log("result after delete " ,result);
             res.status(200).json({message :"success in fetch for update"});
-            // res.json(result.rows);
         }
     })
 })
