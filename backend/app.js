@@ -12,13 +12,14 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(bodyParser.json());
-app.use (bodyParser.urlencoded());
+app.use (bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'../frontend')));
 //app.use(helmet());
 
 
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname,'../frontend/employeeRegister.html'));
+
 });
 
 app.post('/insert',function(req,res){
@@ -39,7 +40,7 @@ app.post('/insert',function(req,res){
 
 app.get('/getData',(req,res) => {
     // const d = pool.query("select * from employeedetails");
-    pool.query("select * from employeedetails", (err,result) => {
+    pool.query("select * from employeedetails ORDER BY employeeid ASC", (err,result) => {
         if(err){
             console.log("error in db" + err);
             res.status(500).json({message : "err"})
@@ -65,6 +66,7 @@ app.get('/getParticularData/:id',(req,res)=>{
             console.log("result us " ,result);
             // res.status(200).json({message :"success in fetch for update"});
             res.json(result.rows[0]);
+            // res.redirect('/');
         }
     });
 })
@@ -84,6 +86,22 @@ app.post('/updateData',function(req,res){
     });
 
 });
+
+
+app.get('/remove/:id', (req,res)=>{
+    const id = req.params.id;
+    pool.query("DELETE FROM employeedetails where employeeid = $1",[id], (err,result)=>{
+        if(err){
+            console.log("error" + err);
+            res.status(500).json({message : "error in delete"});
+        }else{
+            console.log("data deleted");
+            console.log("result after delete " ,result);
+            res.status(200).json({message :"success in fetch for update"});
+            // res.json(result.rows);
+        }
+    })
+})
 
 
 

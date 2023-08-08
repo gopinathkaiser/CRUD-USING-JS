@@ -159,7 +159,7 @@ function deleteEmployeeList(val) {
     displayEmployees();
 }
 
-function authenticate1() {
+async function authenticate1() {
     const formData = {
         id: document.querySelector('[name="id"]').value,
         name: document.querySelector('[name="name"]').value,
@@ -168,7 +168,7 @@ function authenticate1() {
         city: document.querySelector('[name = "city"]').value
     };
 
-    fetch('/insert', {
+    await fetch('/insert', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -190,8 +190,8 @@ function authenticate1() {
     displayData();
 }
 
-function displayData() {
-    fetch('/getData')
+async function displayData() {
+    await fetch('/getData')
         .then(response => response.json())
         .then(data => {
             console.log("dataas");
@@ -204,7 +204,7 @@ function displayData() {
             document.getElementById("table-main").innerHTML = "<tr><th> Employee ID </th> <th> NAME </th> <th>DESIGNATION</th> <th>SALARY</th> <th>CITY</th> <th>ACTIONS</th> </tr>";
 
             data.forEach(item => {
-                document.getElementById("table-main").innerHTML += `<tr><td>${item.employeeid}</td><td>${item.ename}</td><td>${item.edesignation}</td><td>${item.esalary}</td><td>${item.ecity}</td><td> <a href = "#" onclick = "editEmployeeListDB(${item.employeeid})">Edit</a>  <a href = "#" onclick="deleteEmployeeList(${item.employeeid})">Delete </a></td></tr>`;
+                document.getElementById("table-main").innerHTML += `<tr><td>${item.employeeid}</td><td>${item.ename}</td><td>${item.edesignation}</td><td>${item.esalary}</td><td>${item.ecity}</td><td> <a href = "#" onclick = "editEmployeeListDB(${item.employeeid})">Edit</a>  <a href = "#" onclick="deleteEmployeeListDB(${item.employeeid})">Delete </a></td></tr>`;
                 // tmain.appendChild(val);
                 //console.log(item);
             });
@@ -268,6 +268,19 @@ function updateEmployeeDb() {
         });
     displayData();
 
+}
+
+async function deleteEmployeeListDB(id) {
+    await fetch(`/remove/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data + "deleted");
+        })
+        .catch(error => {
+            console.log(error + "in delete");
+        });
+
+    displayData();
 }
 
 
