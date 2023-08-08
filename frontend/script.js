@@ -75,10 +75,7 @@ function displayEmployees() {
 
 
 
-function visibleForm() {
 
-    document.getElementById('form-data').style.display = "block";
-}
 
 function editEmployeeList(val) {
 
@@ -161,6 +158,11 @@ function deleteEmployeeList(val) {
 
 */
 
+function visibleForm() {
+
+    document.getElementById('form-data').style.display = "block";
+}
+
 
 async function insertApiCall() {
     const formData = {
@@ -181,7 +183,8 @@ async function insertApiCall() {
 
         .then(response => response.json())
         .then(data => {
-            alert("success");
+            // alert("success");
+            console.log("insertion success");
         })
 
         .catch(error => {
@@ -267,6 +270,11 @@ function updateEmployeeDb() {
 }
 
 async function deleteEmployeeListDB(id) {
+
+    if (!confirm("Are u sure")) {
+        return;
+    }
+
     await fetch(`/remove/${id}`)
         .then(response => response.json())
         .then(data => {
